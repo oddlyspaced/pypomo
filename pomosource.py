@@ -1,4 +1,4 @@
-# single source of timer file which writes to outfile the status of timers
+# single source of timer values for other client scripts to read from
 
 import time
 
