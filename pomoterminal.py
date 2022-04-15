@@ -58,9 +58,20 @@ def draw_time(total: int, counter: int):
     for i in range(remaining):
         stdscr.addstr(w - 1, i, "=")
 
-for t in range(300, 0, -1):
-    draw_time(25 * 60, t)
+outfile = '/home/hardik/.pomo'
+
+def read_content():
+    inf = open(outfile, 'r')
+    content = inf.readline()
+    inf.close()
+    stat = "Work"
+    if content[0] == 'r':
+        stat = "Rest"
+    draw_time(100, int(content[1:]))
     stdscr.refresh()
+
+while True:
+    read_content()
     time.sleep(1)
 
 stdscr.getch()
