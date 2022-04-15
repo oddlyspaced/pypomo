@@ -41,11 +41,13 @@ def draw_time(counter: int):
         mins = "0" + mins
     if len(secs) == 1:
         secs = "0" + secs
-    draw_digit(0, 0, mins[0])
-    draw_digit(0, 7, mins[1])
-    draw_digit(0, 14, ":")
-    draw_digit(0, 19, secs[0])
-    draw_digit(0, 26, secs[1])
+    x = w // 2 - 2
+    y = h // 2 - ((6 + 6 + 4 + 6 + 6) // 2) - 1
+    draw_digit(x, y, mins[0])
+    draw_digit(x, y + 7, mins[1])
+    draw_digit(x, y + 14, ":")
+    draw_digit(x, y + 19, secs[0])
+    draw_digit(x, y + 26, secs[1])
 
 draw_time(300)
 
