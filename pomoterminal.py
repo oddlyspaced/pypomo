@@ -32,7 +32,7 @@ def draw_digit(y, x, d):
     for i in range(len(digit)):
         stdscr.addstr(y + i, x, digit[i])
 
-def draw_time(counter: int):
+def draw_time(total: int, counter: int):
     mins = counter // 60
     secs = counter - (mins * 60)
     mins = str(mins)
@@ -49,10 +49,15 @@ def draw_time(counter: int):
     draw_digit(x, y + 19, secs[0])
     draw_digit(x, y + 26, secs[1])
 
-draw_time(300)
+    remaining_percent = counter / total
+    remaining = int(h * remaining_percent)
 
-for i in range(h):
-    stdscr.addstr(w - 1, h - i, "=")
+    for i in range(h):
+        stdscr.addstr(w - 1, h - i, " ")
+    for i in range(remaining):
+        stdscr.addstr(w - 1, i, "=")
+
+draw_time(25 * 60, 300)
 
 stdscr.refresh()
 stdscr.getch()
