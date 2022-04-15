@@ -3,7 +3,7 @@ import curses
 import linecache
 
 # 0 - 9, :
-digit_index = [0, 7, 13, 19, 25, 31, 37, 43, 49, 55, 61]
+digit_index = [1, 7, 13, 19, 25, 31, 37, 43, 49, 55, 61]
 
 stdscr = curses.initscr()
 
@@ -32,8 +32,22 @@ def draw_digit(y, x, d):
     for i in range(len(digit)):
         stdscr.addstr(y + i, x, digit[i])
 
-draw_digit(0, 0, "2")
-draw_digit(0, 7, ":")
+def draw_time(counter: int):
+    mins = counter // 60
+    secs = counter - (mins * 60)
+    mins = str(mins)
+    secs = str(secs)
+    if len(mins) == 1:
+        mins = "0" + mins
+    if len(secs) == 1:
+        secs = "0" + secs
+    draw_digit(0, 0, mins[0])
+    draw_digit(0, 7, mins[1])
+    draw_digit(0, 14, ":")
+    draw_digit(0, 19, secs[0])
+    draw_digit(0, 26, secs[1])
+
+draw_time(300)
 
 for i in range(h):
     stdscr.addstr(w - 1, h - i, "=")
