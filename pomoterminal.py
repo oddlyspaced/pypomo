@@ -1,6 +1,7 @@
 import os
 import curses
 import linecache
+import time
 
 # 0 - 9, :
 digit_index = [1, 7, 13, 19, 25, 31, 37, 43, 49, 55, 61]
@@ -57,7 +58,9 @@ def draw_time(total: int, counter: int):
     for i in range(remaining):
         stdscr.addstr(w - 1, i, "=")
 
-draw_time(25 * 60, 300)
+for t in range(300, 0, -1):
+    draw_time(25 * 60, t)
+    stdscr.refresh()
+    time.sleep(1)
 
-stdscr.refresh()
 stdscr.getch()
